@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Liste des UE's :
+{% for l in liste %}
+<li> {{l}} <a href="/noteLab/deleteue/{{l.idue}}/">(Delete)</a> <a href="/noteLab/updateue/{{l.idue}}/">(Edit)</a></li>
+{% endfor %}
+
+</body>
+</html>

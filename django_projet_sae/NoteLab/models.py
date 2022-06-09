@@ -21,6 +21,7 @@ class Etudiant(models.Model):
         db_table = 'Etudiant'
 
 
+
 class Examen(models.Model):
     idexamen = models.AutoField(db_column='idExamen', primary_key=True)  # Field name made lowercase.
     titre = models.CharField(max_length=45)
@@ -56,6 +57,14 @@ class Professeur(models.Model):
         managed = False
         db_table = 'Professeur'
 
+    def __str__(self):
+        listeprof=f"{self.idprofesseur} -|- Nom Prof : {self.nom}"
+        return listeprof
+
+    def dico(self):
+        return {"idprofesseur":self.idprofesseur, "nom":self.nom, "prenom":self.prenom}
+
+
 
 class Ressource(models.Model):
     idressource = models.AutoField(db_column='idRessource', primary_key=True)  # Field name made lowercase.
@@ -76,6 +85,14 @@ class Ue(models.Model):
     class Meta:
         managed = False
         db_table = 'UE'
+
+    def __str__(self):
+        liste=f"{self.idue} -|- UE : {self.nom}"
+        return liste
+
+    def dico(self):
+        return {"idue":self.idue, "nom":self.nom, "semestre":self.semestre, "creditects":self.creditects}
+
 
 
 class UeHasRessource(models.Model):

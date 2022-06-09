@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Liste des Profs's :
+{% for p in listeprof %}
+<li> {{p}} <a href="/noteLab/deleteprof/{{p.idprofesseur}}/">(Delete)</a> <a href="/noteLab/updateprof/{{p.idprofesseur}}/">(Edit)</a></li>
+{% endfor %}
+
+</body>
+</html>
