@@ -7,8 +7,17 @@
 <body>
 Liste des Profs's :
 {% for p in listeprof %}
-<li> {{p}} <a href="/noteLab/deleteprof/{{p.idprofesseur}}/">(Delete)</a> <a href="/noteLab/updateprof/{{p.idprofesseur}}/">(Edit)</a></li>
+<li> {{p}} <a href="/notelab/deleteprof/{{p.idprofesseur}}/">(Delete)</a> <a href="/notelab/updateprof/{{p.idprofesseur}}/">(Edit)</a></li>
 {% endfor %}
+
+<br><br><br>
+Liste des Examens :
+{% for e in listeexa %}
+<li> Titre {{e.titre}} réalisé par {{e.professeur_idprofesseur.nom}} dans la ressource {{e.ressource_idressource.nom}} <a href="/notelab/deleteexamen/{{e.idexamen}}/">(Delete)</a> <a href="/notelab/updateexamen/{{e.idexamen}}/">(Edit)</a></li>
+{% endfor %}
+
+<br><br>
+<a href="/notelab/index/">(Accueil)</a>
 
 </body>
 </html>

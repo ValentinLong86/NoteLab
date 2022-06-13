@@ -20,6 +20,14 @@ class Etudiant(models.Model):
         managed = False
         db_table = 'Etudiant'
 
+    def __str__(self):
+        listeetu=f"{self.idetudiant} -|- Nom & Prenom de l'étudiant : {self.nom} {self.prenom}"
+        return listeetu
+
+    def dico(self):
+        return {"idprofesseur":self.idetudiant, "nom":self.nom, "prenom":self.prenom, "groupe":self.groupe, "photo":self.photo, "email":self.email,}
+
+
 
 
 class Examen(models.Model):
@@ -33,11 +41,18 @@ class Examen(models.Model):
         managed = False
         db_table = 'Examen'
 
+    def __str__(self):
+        listeexam=f"{self.idexamen} -|- Titre de l'examen : {self.titre} | Prof : {self.professeur_idprofesseur}, Ressource : {self.ressource_idressource}"
+        return listeexam
+
+    def dico(self):
+        return {"idexamen":self.idexamen, "titre":self.titre, "date":self.date, "professeur_idprofesseur":self.professeur_idprofesseur, "ressource_idressource":self.ressource_idressource}
+
+
+
 
 class Note(models.Model):
     idnote = models.AutoField(db_column='idNote', primary_key=True)  # Field name made lowercase.
-    examen = models.CharField(max_length=45)
-    etudiant = models.CharField(max_length=45)
     note = models.CharField(max_length=45)
     appreciation = models.CharField(max_length=45, blank=True, null=True)
     examen_idexamen = models.ForeignKey(Examen, models.DO_NOTHING, db_column='Examen_idExamen')  # Field name made lowercase.
@@ -46,6 +61,10 @@ class Note(models.Model):
     class Meta:
         managed = False
         db_table = 'Note'
+
+    def dico(self):
+        return {"dnote":self.idnote, "note":self.note, "appreciation":self.appreciation, "examen_idexamen":self.examen_idexamen, "etudiant_idetudiant":self.etudiant_idetudiant}
+
 
 
 class Professeur(models.Model):
@@ -74,6 +93,13 @@ class Ressource(models.Model):
     class Meta:
         managed = False
         db_table = 'Ressource'
+
+    def __str__(self):
+        listeres=f"{self.idressource} -|- Ressource : {self.nom}"
+        return listeres
+
+    def dico(self):
+        return {"idressource":self.idressource, "nom":self.nom, "descriptif":self.descriptif}
 
 
 class Ue(models.Model):

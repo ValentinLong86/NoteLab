@@ -6,15 +6,15 @@
 </head>
 <body>
     {% if id == none %}
-       <form method="post" action="/noteLab/traitementprof/">
+       <form method="post" action="/notelab/traitementprof/">
      {% else %}
-        <form method="post" action="/noteLab/updatetraitementprof/{{id}}/">
+        <form method="post" action="/notelab/updatetraitementprof/{{id}}/">
      {% endif %}
     {{ form.as_ul }}
     {% csrf_token %}
     <input type="submit" value="Envoyer les données"\>
  </form>
-GOOD
+
 </body>
 </html>
 

@@ -6,9 +6,9 @@
 </head>
 <body>
     {% if id == none %}
-       <form method="post" action="/notelab/traitementue/">
+       <form method="post" action="/notelab/traitementetudiant/">
      {% else %}
-        <form method="post" action="/notelab/updatetraitementue/{{id}}/">
+        <form method="post" action="/notelab/updatetraitementetudiant/{{id}}/">
      {% endif %}
     {{ form.as_ul }}
     {% csrf_token %}

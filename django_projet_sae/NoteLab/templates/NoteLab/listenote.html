@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Liste des Notes :
+{% for n in listenote %}
+<li> {{n.etudiant_idetudiant.nom}} {{n.etudiant_idetudiant.prenom}} a obtenu  {{n.note}} sur l'examen {{n.examen_idexamen.titre}}<a href="/notelab/deletenote/{{n.idnote}}/">(Delete)</a> <a href="/notelab/updatenote/{{n.idnote}}/">(Edit)</a></li>
+{% endfor %}
+<br>
+<a href="/notelab/index/">(Accueil)</a>
+
+</body>
+</html>

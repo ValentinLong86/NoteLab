@@ -7,8 +7,16 @@
 <body>
 Liste des UE's :
 {% for l in liste %}
-<li> {{l}} <a href="/noteLab/deleteue/{{l.idue}}/">(Delete)</a> <a href="/noteLab/updateue/{{l.idue}}/">(Edit)</a></li>
+<li> {{l}} <a href="/notelab/deleteue/{{l.idue}}/">(Delete)</a> <a href="/notelab/updateue/{{l.idue}}/">(Edit)</a></li>
 {% endfor %}
 
+<br><br><br>
+Liste des ressources :
+{% for r in listeres %}
+<li> {{r.nom}} <a href="/notelab/deleteressource/{{r.idressource}}/">(Delete)</a> <a href="/notelab/updateressource/{{r.idressource}}/">(Edit)</a></li>
+{% endfor %}
+
+<br><br>
+<a href="/notelab/index/">(Accueil)</a>
 </body>
 </html>
