@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Liste des Etudiants :
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<h2>Liste des Etudiants :</h2>
 {% for e in listeetu %}
-<li> {{e}} <a href="/notelab/deleteetudiant/{{e.idetudiant}}/">(Delete)</a> <a href="/notelab/updateetudiant/{{e.idetudiant}}/">(Edit)</a></li>
+    <li> {{e}} <a href="/notelab/deleteetudiant/{{e.idetudiant}}/">(Delete)</a> <a href="/notelab/updateetudiant/{{e.idetudiant}}/">(Edit)</a></li>
 {% endfor %}
-<br>
 <a href="/notelab/index/">(Accueil)</a>
 
-</body>
-</html>
+{% endblock %}
+

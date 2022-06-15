@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 body{
     padding: 0;
     margin: 0;
+    font-family: "Quicksand";
+    background-image: url("media/iut.jpg");
+    background-size: 100%;
 }
 
 .menu{
@@ -12,13 +17,11 @@ h1{
     display: inline;
     font-size: 3em;
     margin: 50px;
-    font-family: "calibri";
 }
 
 .menu_buttons{
     text-decoration: none;
     margin: 10px;
-    font-family: "arial";
 }
 
 .sub_menu{
@@ -38,13 +41,62 @@ h1{
     padding: 5%;
     margin: 2%;
     background-color: grey;
-    font-family: "arial";
     font-size: 1.5em;
     text-decoration: none;
     box-shadow: 10px 10px 8px #888888;
     border-radius: 5px;
 }
 
-.sub_menu_buttons:hover{
-    border: -5px solid;
+.title{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+form {
+    background-color: grey;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 320px;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+input{
+    background-color: white;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+textarea{
+    margin-bottom: 5%;
+    background-color: white;
+    border-radius: 12px;
+    border: 0;
+    font-size: 18px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.sendData:hover{
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+}
+
+select{
+    margin-bottom: 5%;
+    background-color: white;
+    border-radius: 12px;
+    border: 0;
+    font-size: 18px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4%;
 }

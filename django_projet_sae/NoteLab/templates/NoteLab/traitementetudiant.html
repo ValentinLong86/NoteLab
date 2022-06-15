@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Vous venez d'ajouter un nouvel étudiant !
-Il s'agit de l'étudiant {{etuok.nom}} {{etuok.prenom}} ! Il est dans le groupe {{etuok.groupe}}
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<p>Vous venez d'ajouter un nouvel étudiant !</p>
+
+<p>Il s'agit de l'étudiant {{etuok.nom}} {{etuok.prenom}} ! Il est dans le groupe {{etuok.groupe}}</p>
 
 <a href="/notelab/index/">(Accueil)</a>
-</body>
-</html>
+
+{% endblock %}

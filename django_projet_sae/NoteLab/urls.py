@@ -35,7 +35,6 @@ urlpatterns = [
     path('deletenote/<int:id>/', views.DeleteNote),
     path('updatenote/<int:id>/', views.UpdateNote),
     path('updatetraitementnote/<int:id>/', views.traitementUpdateNote),
-    path('listenote/', views.listenote),
 
     path('ajoutprof/', views.AjoutProf),
     path('traitementprof/', views.TraitementProf),

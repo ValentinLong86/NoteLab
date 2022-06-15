@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Vous venez d'ajouter une note !
-La note est de {{noteok.note}}
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<p>Vous venez d'ajouter une note !</p>
+<p>La note est de {{noteok.note}}</p>
 
 <a href="/notelab/index/">(Accueil)</a>
-</body>
-</html>
+
+{% endblock %}

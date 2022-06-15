@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Vous venez d'ajouter un prof !
-Il s'agit de {{profok.nom}} {{profok.prenom}}
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<p>Vous venez d'ajouter un prof !</p>
+<p>Il s'agit de {{profok.nom}} {{profok.prenom}}</p>
 
 <a href="/notelab/index/">(Accueil)</a>
-</body>
-</html>
+
+{% endblock %}

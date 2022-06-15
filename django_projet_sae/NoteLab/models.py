@@ -12,7 +12,7 @@ class Etudiant(models.Model):
     idetudiant = models.AutoField(db_column='idEtudiant', primary_key=True)  # Field name made lowercase.
     nom = models.CharField(max_length=45)
     prenom = models.CharField(max_length=45)
-    groupe = models.TextField()
+    groupe = models.CharField(max_length=4)
     photo = models.TextField()
     email = models.CharField(max_length=45)
 
@@ -33,9 +33,9 @@ class Etudiant(models.Model):
 class Examen(models.Model):
     idexamen = models.AutoField(db_column='idExamen', primary_key=True)  # Field name made lowercase.
     titre = models.CharField(max_length=45)
-    date = models.CharField(max_length=45, blank=True, null=True)
-    professeur_idprofesseur = models.ForeignKey('Professeur', models.DO_NOTHING, db_column='Professeur_idProfesseur')  # Field name made lowercase.
-    ressource_idressource = models.ForeignKey('Ressource', models.DO_NOTHING, db_column='Ressource_idRessource')  # Field name made lowercase.
+    date = models.DateField(blank=False, null=False)
+    professeur_idprofesseur = models.ForeignKey('Professeur', models.CASCADE, db_column='Professeur_idProfesseur')  # Field name made lowercase.
+    ressource_idressource = models.ForeignKey('Ressource', models.CASCADE, db_column='Ressource_idRessource')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -54,18 +54,20 @@ class Examen(models.Model):
 class Note(models.Model):
     idnote = models.AutoField(db_column='idNote', primary_key=True)  # Field name made lowercase.
     note = models.CharField(max_length=45)
-    appreciation = models.CharField(max_length=45, blank=True, null=True)
-    examen_idexamen = models.ForeignKey(Examen, models.DO_NOTHING, db_column='Examen_idExamen')  # Field name made lowercase.
-    etudiant_idetudiant = models.ForeignKey(Etudiant, models.DO_NOTHING, db_column='Etudiant_idEtudiant')  # Field name made lowercase.
+    appreciation = models.TextField(blank=True, null=True)
+    examen_idexamen = models.ForeignKey(Examen, models.CASCADE, db_column='Examen_idExamen')  # Field name made lowercase.
+    etudiant_idetudiant = models.ForeignKey(Etudiant, models.CASCADE, db_column='Etudiant_idEtudiant')  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'Note'
 
     def dico(self):
-        return {"dnote":self.idnote, "note":self.note, "appreciation":self.appreciation, "examen_idexamen":self.examen_idexamen, "etudiant_idetudiant":self.etudiant_idetudiant}
+        return {"idnote":self.idnote, "note":self.note, "appreciation":self.appreciation, "examen_idexamen":self.examen_idexamen, "etudiant_idetudiant":self.etudiant_idetudiant}
 
-
+    def __str__(self):
+        listenotes=f"{self.note}"
+        return listenotes
 
 class Professeur(models.Model):
     idprofesseur = models.AutoField(db_column='idProfesseur', primary_key=True)  # Field name made lowercase.
@@ -82,25 +84,6 @@ class Professeur(models.Model):
 
     def dico(self):
         return {"idprofesseur":self.idprofesseur, "nom":self.nom, "prenom":self.prenom}
-
-
-
-class Ressource(models.Model):
-    idressource = models.AutoField(db_column='idRessource', primary_key=True)  # Field name made lowercase.
-    nom = models.CharField(max_length=45)
-    descriptif = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Ressource'
-
-    def __str__(self):
-        listeres=f"{self.idressource} -|- Ressource : {self.nom}"
-        return listeres
-
-    def dico(self):
-        return {"idressource":self.idressource, "nom":self.nom, "descriptif":self.descriptif}
-
 
 class Ue(models.Model):
     idue = models.AutoField(db_column='idUE', primary_key=True)  # Field name made lowercase.
@@ -121,15 +104,28 @@ class Ue(models.Model):
 
 
 
-class UeHasRessource(models.Model):
-    ue_idue = models.OneToOneField(Ue, models.DO_NOTHING, db_column='UE_idUE', primary_key=True)  # Field name made lowercase.
-    ressource_idressource = models.ForeignKey(Ressource, models.DO_NOTHING, db_column='Ressource_idRessource')  # Field name made lowercase.
-    coeficient = models.FloatField(blank=True, null=True)
+class Ressource(models.Model):
+    idressource = models.AutoField(db_column='idRessource', primary_key=True)  # Field name made lowercase.
+    nom = models.CharField(max_length=45)
+    descriptif = models.TextField(blank=True, null=True)
+    #ue_idue = models.ForeignKey(Ue, models.CASCADE, db_column='idue')  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'UE_has_Ressource'
-        unique_together = (('ue_idue', 'ressource_idressource'),)
+        db_table = 'Ressource'
+
+    def __str__(self):
+        listeres=f"{self.idressource} -|- Ressource : {self.nom}"
+        return listeres
+
+    def dico(self):
+        return {"idressource":self.idressource, "nom":self.nom, "descriptif":self.descriptif, "ue_idue":self.ue_idue}
+
+
+
+
+
+
 
 
 class AuthGroup(models.Model):

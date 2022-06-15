@@ -10,7 +10,6 @@ def index(request):
     return render(request, 'NoteLab/index.html')
 
 
-
 def AjoutUE(request):
     if request.method == 'POST':
         form = UeForm(request)
@@ -171,8 +170,8 @@ def traitementUpdateProf(request, id):
 
 
 def listeprofexam(request):
-    listeprof = list(models.Professeur.objects.all())
-    listeexa= list(models.Examen.objects.all())
+    listeprof = models.Professeur.objects.all()
+    listeexa= models.Examen.objects.all()
     return render(request, "NoteLab/listeprofexam.html",{"listeprof":listeprof, "listeexa":listeexa})
 
 
@@ -225,8 +224,9 @@ def traitementUpdateEtudiant(request, id):
 
 
 def listeetudiant(request):
-    listeetu = list(models.Etudiant.objects.all())
-    return render(request, "NoteLab/listeetudiant.html",{"listeetu":listeetu})
+    listenotes = models.Note.objects.all()
+    listeetu = models.Etudiant.objects.all()
+    return render(request, "NoteLab/listeetudiant.html",{"listeetu":listeetu, "listenotes":listenotes})
 
 
 
@@ -306,7 +306,7 @@ def TraitementNote(request):
 def DeleteNote(request, id):
     note=models.Note.objects.get(pk=id)
     note.delete()
-    return HttpResponseRedirect("/notelab/listenote/")
+    return HttpResponseRedirect("/notelab/listeetudiant/")
 
 
 def UpdateNote(request, id):
@@ -326,6 +326,15 @@ def traitementUpdateNote(request, id):
         return render(request, "NoteLab/ajoutnote.html", {"form" : lform, "id": id})
 
 
-def listenote(request):
-    listenote = list(models.Note.objects.all())
-    return render(request, "NoteLab/listenote.html",{"listenote":listenote})
+
+
+
+
+def generatePDF(request, id):
+    buffer = io.BytesIO()
+    x = canvas.Canvas(buffer)
+    x.drawString(100, 100, "Let's generate this pdf file.")
+    x.showPage()
+    x.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='attempt1.pdf')

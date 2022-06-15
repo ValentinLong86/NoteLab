@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% if id == none %}
-       <form method="post" action="/notelab/traitementetudiant/">
-     {% else %}
-        <form method="post" action="/notelab/updatetraitementetudiant/{{id}}/">
-     {% endif %}
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h4>Ajouter un étudiant</h4>
+</div>
+
+{% if id == none %}
+<form method="post" action="/notelab/traitementetudiant/">
+{% else %}
+<form method="post" action="/notelab/updatetraitementetudiant/{{id}}/">
+    {% endif %}
     {{ form.as_ul }}
     {% csrf_token %}
-    <input type="submit" value="Envoyer les données"\>
- </form>
+    <input class="sendData" type="submit" value="Envoyer les données"\>
+</form>
 
-</body>
-</html>
-
-
+{% endblock %}

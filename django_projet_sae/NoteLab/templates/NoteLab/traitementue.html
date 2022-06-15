@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Vous venez d'ajouter une UE !
-Il s'agit de l'UE nommée {{equipementok.nom}}
+{% extends "NoteLab/index.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<p>Vous venez d'ajouter une UE !</p>
+<p>Il s'agit de l'UE nommée {{equipementok.nom}}</p>
 
 <a href="/notelab/index/">(Accueil)</a>
-</body>
-</html>
+
+{% endblock %}

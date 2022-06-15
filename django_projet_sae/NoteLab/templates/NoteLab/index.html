@@ -5,14 +5,21 @@
     <meta charset="utf-8">
     <title>{% block title %}NoteLab | Gestion{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{%static 'NoteLab/styles.css'%}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $( "#id_date" ).datepicker();
+    } );
+    </script>
 </head>
 <body>
     <div id="root">
         <header>
             <nav class="menu">
                 <h1>NoteLab</h1>
-                <a href="#" class="menu_buttons">Gestion</a>
-                <a href="/notelab/listenote" class="menu_buttons">Liste des notes</a>
+                <a href="/notelab/index" class="menu_buttons">Gestion</a>
                 <a href="/notelab/listeetudiant" class="menu_buttons">Liste des étudiants</a>
                 <a href="/notelab/listeprofexam" class="menu_buttons">Lister les professeurs et leurs éxamens</a>
                 <a href="/notelab/listeressourceue" class="menu_buttons">Lister les UE et ressources</a>
