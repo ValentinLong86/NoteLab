@@ -31,17 +31,18 @@ def TraitementUE(request):
         else:
             return render(request, 'NoteLab/ajoutue.html', {'form':pForm})
 
+
 def DeleteUE(request, id):
     ue=models.Ue.objects.get(pk=id)
     ue.delete()
     return HttpResponseRedirect("/notelab/listeressourceue/")
 
 
-
 def UpdateUE(request, id):
     updue=models.Ue.objects.get(pk=id)
     form = UeForm(updue.dico())
     return render(request, "NoteLab/ajoutue.html", {"form":form, "id":id})
+
 
 def traitementUpdateUE(request, id):
     lform = UeForm(request.POST)
@@ -54,13 +55,10 @@ def traitementUpdateUE(request, id):
         return render(request, "NoteLab/ajoutue.html", {"form" : lform, "id": id})
 
 
-
-
 def listeressourceue(request):
     liste = list(models.Ue.objects.all())
     listeres = list(models.Ressource.objects.all())
     return render(request, "NoteLab/listeressourceue.html",{"liste":liste, "listeres": listeres})
-
 
 
 def AjoutRessource(request):
@@ -84,17 +82,18 @@ def TraitementRessource(request):
         else:
             return render(request, 'NoteLab/ajoutressource.html', {'form':pForm})
 
+
 def DeleteRessource(request, id):
     res=models.Ressource.objects.get(pk=id)
     res.delete()
     return HttpResponseRedirect("/notelab/listeressourceue/")
 
 
-
 def UpdateRessource(request, id):
     updres=models.Ressource.objects.get(pk=id)
     form = RessourceForm(updres.dico())
     return render(request, "NoteLab/ajoutressource.html", {"form":form, "id":id})
+
 
 def traitementUpdateRessource(request, id):
     lform = RessourceForm(request.POST)
@@ -105,24 +104,6 @@ def traitementUpdateRessource(request, id):
         return HttpResponseRedirect("/notelab/listeressourceue/")
     else:
         return render(request, "NoteLab/ajoutressource.html", {"form" : lform, "id": id})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def AjoutProf(request):
@@ -146,17 +127,18 @@ def TraitementProf(request):
         else:
             return render(request, 'NoteLab/ajoutprof.html', {'form':pForm})
 
+
 def DeleteProf(request, id):
     prof=models.Professeur.objects.get(pk=id)
     prof.delete()
     return HttpResponseRedirect("/notelab/listeprofexam/")
 
 
-
 def UpdateProf(request, id):
     updprof=models.Professeur.objects.get(pk=id)
     form = ProfForm(updprof.dico())
     return render(request, "NoteLab/ajoutprof.html", {"form":form, "id":id})
+
 
 def traitementUpdateProf(request, id):
     lform = ProfForm(request.POST)
@@ -173,9 +155,6 @@ def listeprofexam(request):
     listeprof = models.Professeur.objects.all()
     listeexa= models.Examen.objects.all()
     return render(request, "NoteLab/listeprofexam.html",{"listeprof":listeprof, "listeexa":listeexa})
-
-
-
 
 
 def AjoutEtudiant(request):
@@ -198,6 +177,7 @@ def TraitementEtudiant(request):
             return render(request, 'NoteLab/traitementetudiant.html', {'etuok':etuok})
         else:
             return render(request, 'NoteLab/ajoutetudiant.html', {'form':pForm})
+
 
 def DeleteEtudiant(request, id):
     etu=models.Etudiant.objects.get(pk=id)
@@ -222,17 +202,10 @@ def traitementUpdateEtudiant(request, id):
         return render(request, "NoteLab/ajoutetudiant.html", {"form" : lform, "id": id})
 
 
-
 def listeetudiant(request):
     listenotes = models.Note.objects.all()
     listeetu = models.Etudiant.objects.all()
     return render(request, "NoteLab/listeetudiant.html",{"listeetu":listeetu, "listenotes":listenotes})
-
-
-
-
-
-
 
 
 def AjoutExamen(request):
@@ -255,6 +228,7 @@ def TraitementExamen(request):
             return render(request, 'NoteLab/traitementexamen.html', {'examok':examok})
         else:
             return render(request, 'NoteLab/ajoutexamen.html', {'form':pForm})
+
 
 def DeleteExamen(request, id):
     exam=models.Examen.objects.get(pk=id)
@@ -279,9 +253,6 @@ def traitementUpdateExamen(request, id):
         return render(request, "NoteLab/ajoutexamen.html", {"form" : lform, "id": id})
 
 
-
-
-
 def AjoutNote(request):
     if request.method == 'POST':
         form = NoteForm(request)
@@ -303,6 +274,7 @@ def TraitementNote(request):
         else:
             return render(request, 'NoteLab/ajoutnote.html', {'form':pForm})
 
+
 def DeleteNote(request, id):
     note=models.Note.objects.get(pk=id)
     note.delete()
@@ -321,13 +293,9 @@ def traitementUpdateNote(request, id):
         noteok=lform.save(commit=False)
         noteok.idnote=id
         noteok.save()
-        return HttpResponseRedirect("/notelab/listenote/")
+        return HttpResponseRedirect("/notelab/listeetudiant/")
     else:
-        return render(request, "NoteLab/ajoutnote.html", {"form" : lform, "id": id})
-
-
-
-
+        return render(request, "NoteLab/listeetudiant.html", {"form" : lform, "id": id})
 
 
 def generatePDF(request, id):

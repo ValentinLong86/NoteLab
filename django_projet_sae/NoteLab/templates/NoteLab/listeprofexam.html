@@ -1,19 +1,25 @@
 {% extends "NoteLab/index.html" %}
 
-{% block title %}Add Student{% endblock %}
+{% block title %}Notelab | Professeurs & Examens{% endblock %}
 
 {% block content %}
 
-<h2>Liste des Professeurs :</h2>
-{% for p in listeprof %}
-<li> {{p}} <a href="/notelab/deleteprof/{{p.idprofesseur}}/">(Delete)</a> <a href="/notelab/updateprof/{{p.idprofesseur}}/">(Edit)</a></li>
-{% endfor %}
+<div class="title">
+    <h4>Professeurs et Examens</h4>
+</div>
 
-<h3>Liste des Examens :</h3>
-{% for e in listeexa %}
-<li> Titre {{e.titre}} réalisé par {{e.professeur_idprofesseur.nom}} dans la ressource {{e.ressource_idressource.nom}} <a href="/notelab/deleteexamen/{{e.idexamen}}/">(Delete)</a> <a href="/notelab/updateexamen/{{e.idexamen}}/">(Edit)</a></li>
-{% endfor %}
-
-<a href="/notelab/index/">(Accueil)</a>
+<section class="sectionRessource">
+    <div class="divRessource">
+        {% for e in listeprof %}
+            <li>{{e.nom}} {{e.prenom}}<a href="/notelab/deleteprof/{{e.idprofesseur}}/" class="linkRessource">Supprimer</a> <a href="/notelab/updateprof/{{e.idprofesseur}}/" class="linkRessource">Editer</a></li>
+            {% for j in listeexa %}
+                {% if j.professeur_idprofesseur.idprofesseur == e.idprofesseur%}
+                    <li>- Examen {{j.titre}} réalisé le {{j.date}} <a href="/notelab/deleteexamen/{{j.idexamen}}/" class="linkRessource">Supprimer</a> <a href="/notelab/updateexamen/{{j.idexamen}}/" class="linkRessource">Editer</a></li>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}

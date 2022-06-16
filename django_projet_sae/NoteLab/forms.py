@@ -14,8 +14,6 @@ class ProfForm(ModelForm):
         }
 
 
-
-
 class UeForm(ModelForm):
     class Meta:
         model = models.Ue
@@ -31,11 +29,13 @@ class UeForm(ModelForm):
 class RessourceForm(ModelForm):
     class Meta:
         model = models.Ressource
-        fields = ("idressource", "nom", "descriptif")
+        fields = ("idressource", "nom", "descriptif", "coefficient", "ue_idue")
         labels = {
             "idressource": _("ID"),
             "nom": _("Nom"),
             "descriptif": _("Descriptif"),
+            "ue_idue": _("UE"),
+            "coefficient": _("Coefficient"),
         }
 
 
@@ -53,20 +53,18 @@ class EtudiantForm(ModelForm):
         }
 
 
-
 class ExamenForm(ModelForm):
     class Meta:
         model = models.Examen
-        fields = ("idexamen", "titre", "date", "professeur_idprofesseur", "ressource_idressource")
+        fields = ("idexamen", "titre", "date", "professeur_idprofesseur", "ressource_idressource", "coefficient")
         labels = {
             "idexamen": _("ID"),
             "titre": _("Titre"),
             "date": _("Date"),
             "professeur_idprofesseur": _("Professeur"),
             "ressource_idressource": _("Ressource"),
+            "coefficient": _("Coefficient"),
         }
-
-
 
 
 class NoteForm(ModelForm):

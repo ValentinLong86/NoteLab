@@ -1,14 +1,24 @@
 {% extends "NoteLab/index.html" %}
 
-{% block title %}Add Student{% endblock %}
+{% block title %}Notelab | Notes & Etudiants{% endblock %}
 
 {% block content %}
 
-<h2>Liste des Etudiants :</h2>
+<div class="title">
+    <h4>Etudiants et Notes</h4>
+</div>
+
 {% for e in listeetu %}
-    <li> {{e}} <a href="/notelab/deleteetudiant/{{e.idetudiant}}/">(Delete)</a> <a href="/notelab/updateetudiant/{{e.idetudiant}}/">(Edit)</a></li>
+    <section class="containerNote">
+        <a class="studentName" href="/notelab/updateetudiant/{{e.idetudiant}}">{{e.nom}} {{e.prenom}}</a>
+        {% for j in listenotes %}
+        {% if j.etudiant_idetudiant.idetudiant == e.idetudiant %}
+            <a class="studentNote" href="/notelab/updatenote/{{j.idnote}}/">{{j.note}}/20</a>
+        {% endif %}
+    {% endfor %}
+    </section>
 {% endfor %}
-<a href="/notelab/index/">(Accueil)</a>
+
 
 {% endblock %}
 
