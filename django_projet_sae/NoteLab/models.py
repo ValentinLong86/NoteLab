@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Etudiant(models.Model):
@@ -13,7 +14,6 @@ class Etudiant(models.Model):
     nom = models.CharField(max_length=45)
     prenom = models.CharField(max_length=45)
     groupe = models.CharField(max_length=5)
-    photo = models.TextField()
     email = models.CharField(max_length=45)
 
     class Meta:
@@ -24,7 +24,7 @@ class Etudiant(models.Model):
         return f"{self.nom} {self.prenom} {self.groupe}"
 
     def dico(self):
-        return {"idprofesseur":self.idetudiant, "nom":self.nom, "prenom":self.prenom, "groupe":self.groupe, "photo":self.photo, "email":self.email,}
+        return {"idprofesseur":self.idetudiant, "nom":self.nom, "prenom":self.prenom, "groupe":self.groupe, "email":self.email,}
 
 
 class Examen(models.Model):
@@ -48,7 +48,7 @@ class Examen(models.Model):
 
 class Note(models.Model):
     idnote = models.AutoField(db_column='idNote', primary_key=True)  # Field name made lowercase.
-    note = models.IntegerField()
+    note = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(0)])
     appreciation = models.TextField(blank=True, null=True)
     examen_idexamen = models.ForeignKey(Examen, models.CASCADE, db_column='Examen_idExamen')  # Field name made lowercase.
     etudiant_idetudiant = models.ForeignKey(Etudiant, models.CASCADE, db_column='Etudiant_idEtudiant')  # Field name made lowercase.

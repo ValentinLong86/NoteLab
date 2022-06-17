@@ -42,13 +42,12 @@ class RessourceForm(ModelForm):
 class EtudiantForm(ModelForm):
     class Meta:
         model = models.Etudiant
-        fields = ("idetudiant", "nom", "prenom", "groupe", "photo", "email")
+        fields = ("idetudiant", "nom", "prenom", "groupe", "email")
         labels = {
             "idetudiant": _("ID"),
             "nom": _("Nom"),
             "prenom": _("Prenom"),
             "groupe": _("Groupe"),
-            "photo": _("Photo"),
             "email": _("Email"),
         }
 
@@ -78,6 +77,5 @@ class NoteForm(ModelForm):
             "examen_idexamen": _("Examen"),
             "etudiant_idetudiant": _("Etudiant"),
         }
-
 
 

@@ -10,6 +10,8 @@
 
 {% for e in listeetu %}
     <section class="containerNote">
+        <a href="/notelab/deleteetudiant/{{e.idetudiant}}" class="studentDelete">[❌]</a>
+        <a href="/notelab/generatePDF/{{e.idetudiant}}" class="studentDelete">[📝]</a>
         <a class="studentName" href="/notelab/updateetudiant/{{e.idetudiant}}">{{e.nom}} {{e.prenom}}</a>
         {% for j in listenotes %}
         {% if j.etudiant_idetudiant.idetudiant == e.idetudiant %}

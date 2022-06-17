@@ -1,9 +1,16 @@
+import io
+import reportlab
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import cm
+from reportlab.platypus import Table
+from django.http import FileResponse
+
 from django.shortcuts import render
 from .models import Ue
 from .forms import UeForm, ProfForm, RessourceForm, EtudiantForm, ExamenForm, NoteForm
 from django.http import HttpResponseRedirect
 from . import models
-# Create your views here.
+
 
 
 def index(request):
@@ -299,10 +306,25 @@ def traitementUpdateNote(request, id):
 
 
 def generatePDF(request, id):
+    etudiant = models.Etudiant.objects.get(idetudiant=id)
+    notes = models.Note.objects.filter(etudiant_idetudiant = id)
     buffer = io.BytesIO()
-    x = canvas.Canvas(buffer)
-    x.drawString(100, 100, "Let's generate this pdf file.")
-    x.showPage()
-    x.save()
+
+    p = canvas.Canvas(buffer)
+    p.drawString(cm, 28*cm, f"Notes de l'étudiant {etudiant}")
+    data = [["Note", "Examen", "Appreciation"]]
+    text = "/20"
+    for n in notes:
+        data.append([
+            str(n.note) + text,
+            n.examen_idexamen,
+            n.appreciation,
+        ])
+    t = Table(data)
+    t.wrapOn(p, 25 * cm, 100)
+    t.drawOn(p, cm, 25 * cm)
+    p.showPage()
+    p.save()
+
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='attempt1.pdf')
+    return FileResponse(buffer, as_attachment=True, filename=f"Relevé de note de {etudiant.nom}.pdf")

@@ -41,5 +41,7 @@ urlpatterns = [
     path('listeprofexam/', views.listeprofexam),
     path('deleteprof/<int:id>/', views.DeleteProf),
     path('updateprof/<int:id>/', views.UpdateProf),
-    path('updatetraitementprof/<int:id>/', views.traitementUpdateProf)
+    path('updatetraitementprof/<int:id>/', views.traitementUpdateProf),
+
+    path('generatePDF/<int:id>/', views.generatePDF),
 ]

@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<p>Vous venez d'ajouter un nouvel étudiant !</p>
-
-<p>Il s'agit de l'étudiant {{etuok.nom}} {{etuok.prenom}} ! Il est dans le groupe {{etuok.groupe}}</p>
-
-<a href="/notelab/index/">(Accueil)</a>
+<p class="traitementText">Vous venez d'ajouter un nouvel étudiant !</p>
+<p class="traitementText">Nom: {{etuok.nom}}</p>
+<p class="traitementText">Prénom: {{etuok.prenom}}</p>
+<p class="traitementText">Groupe: {{etuok.groupe}}</p>
+<a class="traitementText" href="/notelab/ajoutetudiant/" >Ajouter un autre étudiant</a>
 
 {% endblock %}
